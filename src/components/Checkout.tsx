@@ -8,7 +8,7 @@ let stripePromise: Promise<Stripe | null>;
 
 const getStripe = () => {
   if (!stripePromise) {
-    stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUB_KEY!);
+    stripePromise = loadStripe(`${process.env.REACT_APP_STRIPE_PUB_KEY}`);
   }
   return stripePromise;
 };
@@ -17,7 +17,7 @@ const Checkout = () => {
   const [stripeError, setStripeError] = useState<StripeError | any >(null);
   const [isLoading, setLoading] = useState(false);
   const item = {
-    price: process.env.REACT_APP_ITEM_PRICE,
+    price: `${process.env.REACT_APP_ITEM_PRICE}`,
     quantity: 1
   };
 
